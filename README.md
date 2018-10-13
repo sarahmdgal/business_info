@@ -6,3 +6,5 @@ These are working sample files in PHP, all written from scratch.  In the busines
 Also the same sample database has been connected to Python 3.7 screens.  The primary file, BusinessCustomerInformationScreenMySQLPython37.py is the screen to run.  BusinessCustomer.py is the class file, and db_businesscustomer.py is the connecting file to the MySQL database.
 
 NOTE:  Everything was tested using wampserver64, with localhost.  
+
+HOW TO CREATE DATABASE:  the file business_info_db_creation.sql can be immediately imported in phpmyadmin as written.  To import only into a MySQL instance, copy and paste from the line "CREATE DATABASE IF NOT EXISTS...." all the way to the end.  The user name in all PHP and Python files is 'staffmember' and the password is 'Customer1'.  Please set up accordingly.
