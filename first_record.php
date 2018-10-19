@@ -18,25 +18,24 @@
 			form.action = action;
 			form.submit();
     </script>
-  <title>Business Customer Information Screen</title>
+  <title>Customer Data Search Results</title>
 </head>
 <body bgcolor="#ce0f69">
-  <h1><font color="E387AA"><center>Business Customer Information Screen</center></font></h1>
+  <h1><font color="E387AA"><center>Customer Data Search Results</center></font></h1>
   <?php
-    $db =  mysqli_connect('localhost:3306', 'staffmember', 'Customer1');
-	mysqli_select_db($db, 'business_info');
+    $db =  mysqli_connect('localhost:3306', 'root', 'Y@nkees1!', 'customerservice');
     if (mysqli_connect_errno()) {
        echo '<p>Error: Could not connect to database.<br/>
        Please try again later.</p>';
        exit;
     }
 
-		$query = "SELECT * FROM clientinfo WHERE PersonID IN (SELECT min(PersonID) FROM clientinfo)";
+		$query = "SELECT * FROM person WHERE PersonID IN (SELECT min(PersonID) FROM person)";
 		$result = mysqli_query($db, $query);
 		
 		while($row=mysqli_fetch_assoc($result))
 		{
-			echo "<form action='business_update_record.php' method=post>"; 
+			echo "<form action='update_record.php' method=post>"; 
 			echo '<p><strong><label for="PersonID">Person ID:</label>&nbsp;&nbsp;<input name="PersonID" type="text" size="3" value="'.$row['PersonID'].'"></strong></p>';			
 			echo '<p><strong><label for="salut">Salut:</label>&nbsp;&nbsp;<input name="salut" type="text" size="5" value="'.$row['salut'].'">
 			<label for="firstname">First Name:</label>&nbsp;&nbsp;<input name="firstname" type="text" size="15" value="'.$row['firstname'].'">
@@ -63,13 +62,13 @@
 			echo '<input type="submit" name="Update Record">';
 			echo "</form>";
 		
-			echo '<form action="business_add_new_record.php" method="post"><input type="submit" name="submit" value="Add New Record"></form>
-				  <form action="business_first_record.php" method="post"><input type="submit" name="submit" value="First Record"></form>
-				  <form action="business_previous_record.php" method="post"><input name="searchterm" type="hidden" size="5" value='.$row['PersonID'].'><input type="submit" name="submit" value="Previous Record"></form>
-				  <form action="business_next_record.php" method="post"><input name="searchterm" type="hidden" size="5" value='.$row['PersonID'].'><input type="submit" name="Next Record" value="Next Record"></form>
-				  <form action="business_last_record.php" method="post"><input type="submit" name="submit" value="Last Record"></form>';
+			echo '<form action="add_new_record.php" method="post"><input type="submit" name="submit" value="Add New Record"></form>
+				  <form action="first_record.php" method="post"><input type="submit" name="submit" value="First Record"></form>
+				  <form action="previous_record.php" method="post"><input name="searchterm" type="hidden" size="5" value='.$row['PersonID'].'><input type="submit" name="submit" value="Previous Record"></form>
+				  <form action="next_record.php" method="post"><input name="searchterm" type="hidden" size="5" value='.$row['PersonID'].'><input type="submit" name="Next Record" value="Next Record"></form>
+				  <form action="last_record.php" method="post"><input type="submit" name="submit" value="Last Record"></form>';
 
-			echo '<form action="business_delete_record.php" method="post"><input name="searchterm" type="hidden" size="5" value='.$row['PersonID'].'><input type="submit" name="submit" value="Delete Record"></form>';		
+			echo '<form action="delete_record.php" method="post"><input name="searchterm" type="hidden" size="5" value='.$row['PersonID'].'><input type="submit" name="submit" value="Delete Record"></form>';		
 		}
 	$result->free_result();
     $db->close();
