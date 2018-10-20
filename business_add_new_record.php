@@ -48,7 +48,7 @@
 <body bgcolor="#C3B7BC">
   <h1><font color="071D49"><center>Business Customer Information Screen</center></font></h1>
   <?php  
-	  echo '<form action="business_insert_customerservice.php" method="post">
+	  echo '<form action="business_insert_businessinfo.php" method="post">
 	  <p><strong>Salut:&nbsp;&nbsp;<input name="salut" type="text" size="3">&nbsp;&nbsp;&nbsp;First Name:&nbsp;&nbsp;<input name="firstname" type="text" size="15">&nbsp;&nbsp;&nbsp;Mid Init:&nbsp;&nbsp;<input name="mid_init" type="text" size="15">&nbsp;&nbsp;&nbsp;Last Name:&nbsp;&nbsp;<input name="lastname" type="text" size="15">&nbsp;&nbsp;&nbsp;Suffix:&nbsp;&nbsp;<input name="suffix" type="text" size="5"></p></strong>
 	  <p><strong>Job Title:&nbsp;&nbsp;<input name="title" type="text" size="50"></p></strong>
 	  <p><strong>Company Name:&nbsp;&nbsp;<input name="company_name" type="text" size="60">&nbsp;&nbsp;&nbsp;Department:&nbsp;&nbsp;<input name="department" type="text" size="40"></p></strong>
