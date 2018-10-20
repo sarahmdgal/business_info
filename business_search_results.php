@@ -48,11 +48,11 @@
 </head>
 <body bgcolor="#C3B7BC">
   <h1><font color="071D49"><center>Business Customer Information Screen</center></font></h1>
+
   <?php
-
-	$searchterm=$_POST['searchterm'];
-
-	$searchterm=$searchterm - 1;
+	  	$firstname=$_POST['firstname'];
+		$lastname=$_POST['lastname'];
+  
     $db =  mysqli_connect('localhost:3306', 'staffmember', 'Customer1');
 	mysqli_select_db($db, 'business_info');
     if (mysqli_connect_errno()) {
@@ -60,8 +60,7 @@
        Please try again later.</p>';
        exit;
     }
-
-		$query = "SELECT * FROM clientinfo WHERE PersonID = $searchterm";
+		$query = "SELECT * FROM clientinfo WHERE firstname LIKE '$firstname' AND lastname LIKE '$lastname'";
 		$result = mysqli_query($db, $query);
 		
 		while($row=mysqli_fetch_assoc($result))
@@ -82,7 +81,10 @@
 			<label for="state">State:</label>&nbsp;&nbsp;<input name="state" type="text" size="5"  value="'.$row['state'].'">
 			<label for="postal_code">Postal Code:</label>&nbsp;&nbsp;<input name="postal_code" type="text" size="15" value="'.$row['postal_code'].'">
 			<label for="zip_code">Zip Code:</label>&nbsp;&nbsp;<input name="zip_code" type="text"  size="15" value="'.$row['zip_code'].'"></strong></p>';
-			echo '<p><strong><label for="mobile_phone">Mobile Phone:</label>&nbsp;&nbsp;<input name="mobile_phone" type="text" size="15" value="'.$row['mobile_phone'].'"><label for="office_phone">Office Phone:</label>&nbsp;&nbsp;<input name="office_phone" type="text" size="15"  value="'.$row['office_phone'].'"><label for="home_phone">Home Phone:</label>&nbsp;&nbsp;<input name="home_phone" type="text" size="15"  value="'.$row['home_phone'].'"><label for="fax_phone">Fax Phone:</label>&nbsp;&nbsp;<input name="fax_phone" type="text" size="15" value="'.$row['fax_phone'].'"></strong></p>';
+			echo '<p><strong><label for="mobile_phone">Mobile Phone:</label>&nbsp;&nbsp;<input name="mobile_phone" type="text" size="15" value="'.$row['mobile_phone'].'">
+			<label for="office_phone">Office Phone:</label>&nbsp;&nbsp;<input name="office_phone" type="text" size="15"  value="'.$row['office_phone'].'">
+			<label for="home_phone">Home Phone:</label>&nbsp;&nbsp;<input name="home_phone" type="text" size="15"  value="'.$row['home_phone'].'">
+			<label for="fax_phone">Fax Phone:</label>&nbsp;&nbsp;<input name="fax_phone" type="text" size="15" value="'.$row['fax_phone'].'"></strong></p>';
 			
 			echo '<p><strong><label for="office_email">Office Email:</label>&nbsp;&nbsp;<input name="office_email" type="text" size="50" value="'.$row['office_email'].'"><label for="home_email">Home Email:</label>&nbsp;&nbsp;<input name="home_email" type="text" size="50" value="'.$row['home_email'].'"></strong></p></p><strong><label for="company_website">Company Website:</label>&nbsp;&nbsp;<input name="company_website" type="text" size="60" value="'.$row['company_website'].'"></strong></p><p><strong><label for="gender">Gender:</label>&nbsp;&nbsp;<input name="gender" type="text" size="10"  value="'.$row['gender'].'"><label for="age">Age:</label>&nbsp;&nbsp;<input name="age" type="text" size="5"  value="'.$row['age'].'"><label for="notes">Comments/Notes:</label>&nbsp;&nbsp;<input name="notes" type="text" size="100" value="'.$row['notes'].'"></strong></p>';
 			
@@ -95,10 +97,10 @@
 				  <form action="business_last_record.php" method="post"><input type="submit" name="submit" value="Last Record"></form>
 				  <form action="business_search.php" method=post><input type="submit" name="submit" value="Find Record"></button></form>					  
 				  <form action="business_delete_record.php" method="post"><input name="searchterm" type="hidden" size="5" value='.$row['PersonID'].'><input type="submit" name="submit" value="Delete Record"></form></div>';			
-		}			
-		
-	$result->free_result();
-    $db->close();
+				
+		}
+/* 	$result->free_result();
+    $db->close(); */
   ?>
   </body>
  </html> 

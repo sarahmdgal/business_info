@@ -91,8 +91,10 @@
 				  <form action="business_previous_record.php" method="post"><input name="searchterm" type="hidden" size="5" value='.$row['PersonID'].'><input type="submit" name="submit" value="Previous Record"></form>
 				  <form action="business_next_record.php" method="post"><input name="searchterm" type="hidden" size="5" value='.$row['PersonID'].'><input type="submit" name="Next Record" value="Next Record"></form>
 				  <form action="business_last_record.php" method="post"><input type="submit" name="submit" value="Last Record"></form>
-				  <form action="business_delete_record.php" method="post"><input name="searchterm" type="hidden" size="5" value='.$row['PersonID'].'><input type="submit" name="submit" value="Delete Record"></form></div>';						
-		}
+				  <form action="business_search.php" method=post><input type="submit" name="submit" value="Find Record"></button></form>					  
+				  <form action="business_delete_record.php" method="post"><input name="searchterm" type="hidden" size="5" value='.$row['PersonID'].'><input type="submit" name="submit" value="Delete Record"></form></div>';			
+		}					
+		
 	$result->free_result();
     $db->close();
   ?>
