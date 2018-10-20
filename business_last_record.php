@@ -12,7 +12,7 @@
 }
 
 /* Clear floats (clearfix hack) */
-.btn-group:after {
+.frm-group:after {
     content: "";
     clear: both;
     display: table;
