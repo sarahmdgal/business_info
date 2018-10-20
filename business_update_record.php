@@ -3,8 +3,8 @@
 <head>
 <style>
 .frm-group form {
-    background-color: #C1B7BB; /* Green background */
-    border: 1px solid green; /* Green border */
+    background-color: #C1B7BB; /* Gray background */
+    border: 1px solid black; /* black border */
     color: white; /* White text */
     padding: 10px 24px; /* Some padding */
     cursor: pointer; /* Pointer/hand icon */
@@ -24,7 +24,7 @@
 
 /* Add a background color on hover */
 .frm-group form:hover {
-    background-color: #3e8e41;
+    background-color: #0045B0;
 }
 </style>
     <script type="text/javascript">
@@ -77,7 +77,8 @@
 		home_phone = '$_POST[home_phone]', 
 		fax_phone = '$_POST[fax_phone]', 
 		office_email = '$_POST[office_email]', 
-		home_email = '$_POST[home_email]', 
+		home_email = '$_POST[home_email]',
+		company_website = '$_POST[company_website]',	
 		gender = '$_POST[gender]', 
 		age = '$_POST[age]', 
 		notes  = '$_POST[notes]'  

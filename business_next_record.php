@@ -3,8 +3,8 @@
 <head>
 <style>
 .frm-group form {
-    background-color: #C1B7BB; /* Green background */
-    border: 1px solid green; /* Green border */
+    background-color: #C1B7BB; /* Gray background */
+    border: 1px solid black; /* black border */
     color: white; /* White text */
     padding: 10px 24px; /* Some padding */
     cursor: pointer; /* Pointer/hand icon */
@@ -24,7 +24,7 @@
 
 /* Add a background color on hover */
 .frm-group form:hover {
-    background-color: #3e8e41;
+    background-color: #0045B0;
 }
 </style>
     <script type="text/javascript">
@@ -82,14 +82,12 @@
 			<label for="state">State:</label>&nbsp;&nbsp;<input name="state" type="text" size="5"  value="'.$row['state'].'">
 			<label for="postal_code">Postal Code:</label>&nbsp;&nbsp;<input name="postal_code" type="text" size="15" value="'.$row['postal_code'].'">
 			<label for="zip_code">Zip Code:</label>&nbsp;&nbsp;<input name="zip_code" type="text"  size="15" value="'.$row['zip_code'].'"></strong></p>';
-			echo '<p><strong<label for="mobile_phone">Mobile Phone:</label>&nbsp;&nbsp;<input name="mobile_phone" type="text" size="15" value="'.$row['mobile_phone'].'">
-			<label for="office_phone">Office Phone:</label>&nbsp;&nbsp;<input name="office_phone" type="text" size="15"  value="'.$row['office_phone'].'">
-			<label for="home_phone">Home Phone:</label>&nbsp;&nbsp;<input name="home_phone" type="text" size="15"  value="'.$row['home_phone'].'">
-			<label for="fax_phone">Fax Phone:</label>&nbsp;&nbsp;<input name="fax_phone" type="text" size="15" value="'.$row['fax_phone'].'"></strong></p>';
-			echo '<p><strong><label for="office_email">Office Email:</label>&nbsp;&nbsp;<input name="office_email" type="text" size="50" value="'.$row['office_email'].'">
-			<label for="home_email">Home Email:</label>&nbsp;&nbsp;<input name="home_email" type="text" size="50" value="'.$row['home_email'].'"></strong></p>';
-			echo '<p><strong><label for="gender">Gender:</label>&nbsp;&nbsp;<input name="gender" type="text" size="10"  value="'.$row['gender'].'">
-			<label for="age">Age:</label>&nbsp;&nbsp;<input name="age" type="text" size="5"  value="'.$row['age'].'"><label for="notes">Comments/Notes:</label>&nbsp;&nbsp;<input name="notes" type="text" size="100" value="'.$row['notes'].'"></strong></p>';
+			echo '<p><strong><label for="mobile_phone">Mobile Phone:</label>&nbsp;&nbsp;<input name="mobile_phone" type="text" size="15" value="'.$row['mobile_phone'].'"><label for="office_phone">Office Phone:</label>&nbsp;&nbsp;<input name="office_phone" type="text" size="15"  value="'.$row['office_phone'].'"><label for="home_phone">Home Phone:</label>&nbsp;&nbsp;<input name="home_phone" type="text" size="15"  value="'.$row['home_phone'].'"><label for="fax_phone">Fax Phone:</label>&nbsp;&nbsp;<input name="fax_phone" type="text" size="15" value="'.$row['fax_phone'].'"></strong></p>';
+			
+			
+			echo '<p><strong><label for="office_email">Office Email:</label>&nbsp;&nbsp;<input name="office_email" type="text" size="50" value="'.$row['office_email'].'"><label for="home_email">Home Email:</label>&nbsp;&nbsp;<input name="home_email" type="text" size="50" value="'.$row['home_email'].'"></strong></p></p><strong><label for="company_website">Company Website:</label>&nbsp;&nbsp;<input name="company_website" type="text" size="60" value="'.$row['company_website'].'"></strong></p><p><strong><label for="gender">Gender:</label>&nbsp;&nbsp;<input name="gender" type="text" size="10"  value="'.$row['gender'].'"><label for="age">Age:</label>&nbsp;&nbsp;<input name="age" type="text" size="5"  value="'.$row['age'].'"><label for="notes">Comments/Notes:</label>&nbsp;&nbsp;<input name="notes" type="text" size="100" value="'.$row['notes'].'"></strong></p>';
+			
+			
 			echo '<div class="frm-group">
 			      <input type="submit" name="Update Record" value="Update Record"></form>
 			      <form action="business_add_new_record.php" method=post><input type="submit" name="submit" value="Add New Record"></button></form>		
