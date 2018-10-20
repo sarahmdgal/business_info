@@ -1,34 +1,53 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script type="text/javascript">
-	label {
-	cursor: pointer;
-	color: "#E387AA;"
-	display: block;
-	padding: 10px;
-	margin: 3px;
-	}
-	function ClearPlaceHolder (input) {
-		input.defaultValue==""
-		if (input.value == input.defaultValue) {
-			input.value = "";
-		}
-	}
-	function SetPlaceHolder (input) {
-		if (input.value == "") {
-			input.value = input.defaultValue;
-		}
-	}
-	 function submitForm(action) {
-		var form = document.getElementById('customer_data_results.php');
-		form.action = action;
-		form.submit();
-</script>
+<style>
+.frm-group form {
+    background-color: #C1B7BB; /* Green background */
+    border: 1px solid green; /* Green border */
+    color: white; /* White text */
+    padding: 10px 24px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    float: left; /* Float the buttons side by side */
+}
+
+/* Clear floats (clearfix hack) */
+.btn-group:after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.frm-group form:not(:last-child) {
+    border-right: none; /* Prevent double borders */
+}
+
+/* Add a background color on hover */
+.frm-group form:hover {
+    background-color: #3e8e41;
+}
+</style>
+    <script type="text/javascript">
+        function ClearPlaceHolder (input) {
+			input.defaultValue==""
+            if (input.value == input.defaultValue) {
+                input.value = "";
+            }
+        }
+        function SetPlaceHolder (input) {
+            if (input.value == "") {
+                input.value = input.defaultValue;
+            }
+        }
+		 function submitForm(action) {
+			var form = document.getElementById('form1');
+			form.action = action;
+			form.submit();
+    </script>
   <title>Business Customer Information Screen</title>
 </head>
-<body bgcolor="#ce0f69">
-  <h1><font color="E387AA"><center>Business Customer Information Screen</center></font></h1>
+<body bgcolor="#C3B7BC">
+  <h1><font color="071D49"><center>Business Customer Information Screen</center></font></h1>
   <?php
 	
     $db =  mysqli_connect('localhost:3306', 'staffmember', 'Customer1');
@@ -69,16 +88,14 @@
 			<label for="home_email">Home Email:</label>&nbsp;&nbsp;<input name="home_email" type="text" size="50" value="'.$row['home_email'].'"></strong></p>';
 			echo '<p><strong><label for="gender">Gender:</label>&nbsp;&nbsp;<input name="gender" type="text" size="10"  value="'.$row['gender'].'">
 			<label for="age">Age:</label>&nbsp;&nbsp;<input name="age" type="text" size="5"  value="'.$row['age'].'"><label for="notes">Comments/Notes:</label>&nbsp;&nbsp;<input name="notes" type="text" size="100" value="'.$row['notes'].'"></strong></p>';
-			echo '<input type="submit" name="Update Record">';
-			echo "</form>";
-		
-			echo '<form action="business_add_new_record.php" method="post"><input type="submit" name="submit" value="Add New Record"></form>
+			echo '<div class="frm-group">
+			      <input type="submit" name="Update Record" value="Update Record"></form>
+			      <form action="business_add_new_record.php" method=post><input type="submit" name="submit" value="Add New Record"></button></form>		
 				  <form action="business_first_record.php" method="post"><input type="submit" name="submit" value="First Record"></form>
 				  <form action="business_previous_record.php" method="post"><input name="searchterm" type="hidden" size="5" value='.$row['PersonID'].'><input type="submit" name="submit" value="Previous Record"></form>
 				  <form action="business_next_record.php" method="post"><input name="searchterm" type="hidden" size="5" value='.$row['PersonID'].'><input type="submit" name="Next Record" value="Next Record"></form>
-				  <form action="business_last_record.php" method="post"><input type="submit" name="submit" value="Last Record"></form>';
-
-			echo '<form action="business_delete_record.php" method="post"><input name="searchterm" type="hidden" size="5" value='.$row['PersonID'].'><input type="submit" name="submit" value="Delete Record"></form>';					
+				  <form action="business_last_record.php" method="post"><input type="submit" name="submit" value="Last Record"></form>
+				  <form action="business_delete_record.php" method="post"><input name="searchterm" type="hidden" size="5" value='.$row['PersonID'].'><input type="submit" name="submit" value="Delete Record"></form></div>';						
 		}
 	$result->free_result();
     $db->close();

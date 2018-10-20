@@ -1,6 +1,31 @@
 <!DOCTYPE html>
 <html>
-<head>
+<style>
+.frm-group form {
+    background-color: #C1B7BB; /* Green background */
+    border: 1px solid green; /* Green border */
+    color: white; /* White text */
+    padding: 10px 24px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    float: left; /* Float the buttons side by side */
+}
+
+/* Clear floats (clearfix hack) */
+.btn-group:after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.frm-group form:not(:last-child) {
+    border-right: none; /* Prevent double borders */
+}
+
+/* Add a background color on hover */
+.frm-group form:hover {
+    background-color: #3e8e41;
+}
+</style>
     <script type="text/javascript">
         function ClearPlaceHolder (input) {
 			input.defaultValue==""
@@ -20,9 +45,8 @@
     </script>
   <title>Business Customer Information Screen</title>
 </head>
-
-<body bgcolor="#ce0f69">
-  <h1><font color="E387AA"><center>Business Customer Information Screen</center></font></h1>
+<body bgcolor="#C3B7BC">
+  <h1><font color="071D49"><center>Business Customer Information Screen</center></font></h1>
   <?php  
 	  echo '<form action="business_insert_customerservice.php" method="post">
 	  <p><strong>Salut:&nbsp;&nbsp;<input name="salut" type="text" size="3">&nbsp;&nbsp;&nbsp;First Name:&nbsp;&nbsp;<input name="firstname" type="text" size="15">&nbsp;&nbsp;&nbsp;Mid Init:&nbsp;&nbsp;<input name="mid_init" type="text" size="15">&nbsp;&nbsp;&nbsp;Last Name:&nbsp;&nbsp;<input name="lastname" type="text" size="15">&nbsp;&nbsp;&nbsp;Suffix:&nbsp;&nbsp;<input name="suffix" type="text" size="5"></p></strong>
@@ -33,8 +57,7 @@
 	  <p><strong>Mobile Phone:&nbsp;&nbsp;<input name="mobile_phone" type="text" size="15">&nbsp;&nbsp;&nbsp;Office Phone:&nbsp;&nbsp;<input name="office_phone" type="text" size="15">&nbsp;&nbsp;&nbsp;Home Phone:&nbsp;&nbsp;<input name="home_phone" type="text" size="15">&nbsp;&nbsp;&nbsp;Fax Phone:&nbsp;&nbsp;<input name="fax_phone" type="text" size="15"></p></strong>
 	  <p><strong>Office Email:&nbsp;&nbsp;<input name="office_email" type="text" size="50">&nbsp;&nbsp;&nbsp;Home Email:&nbsp;&nbsp;<input name="home_email" type="text" size="50"></p></strong>
 	  <p><strong>Gender:&nbsp;&nbsp;<input name="gender" type="text" size="10">&nbsp;&nbsp;&nbsp;Age:&nbsp;&nbsp;<input name="age" type="text" size="3">&nbsp;&nbsp;&nbsp;Notes:&nbsp;&nbsp;<input name="notes" type="text" size="100"></p></strong>
-	  <p></strong><input type="submit" name="submit" value="Insert New Record"></p></strong>
-	  </form>';
+	  <div class="frm-group"><input type="submit" name="submit" value="Insert New Record"></form></div>';
 	  
 	  
 
