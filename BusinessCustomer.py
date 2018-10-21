@@ -1,7 +1,7 @@
 class Clientinfo:
     def __init__(self, personid=0, salut="", firstname="", mid_init="", lastname="", suffix="", title="", company_name="",
                  department="", address1="", address2="", suite_no="", city="", state="", postal_code="", zip_code="",
-                 mobile_phone="", office_phone="", home_phone="", fax_phone="", office_email="", home_email="", gender="", age="", notes=""):
+                 mobile_phone="", office_phone="", home_phone="", fax_phone="", office_email="", home_email="", company_website="", gender="", age="", notes=""):
         self.personid = personid
         self.salut = salut
         self.firstname = firstname
@@ -24,6 +24,7 @@ class Clientinfo:
         self.fax_phone = fax_phone
         self.office_email = office_email
         self.home_email = home_email
+        self.company_website = company_website
         self.gender = gender
         self.age = age
         self.notes = notes

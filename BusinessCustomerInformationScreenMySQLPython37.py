@@ -36,6 +36,7 @@ def add_new_customer():
     global home_phone
     global office_email
     global home_email
+    global company_website
     global gender
     global age
     global notes
@@ -61,22 +62,18 @@ def add_new_customer():
     Label(master, text="Last Name:").grid(row=1, column=6, sticky=E)
     lastname = Entry(master, width=15, font=small_font)
     lastname.grid(row=1, column=7, sticky=W)
-
   
-    Label(master, text="Suffix:").grid(row=1, column=8, sticky=E)
+    Label(master, text="Suffix:").grid(row=2, column=0, sticky=E)
     suffix = Entry(master, width=5, font=small_font)
-    suffix.grid(row=1, column=9, sticky=W)
-
+    suffix.grid(row=2, column=1, sticky=W)
     
-    Label(master, text="Title:").grid(row=2, column=0, sticky=E)
-    title = Entry(master, width=30, font=small_font)
-    title.grid(row=2, column=1, sticky=W)
-
+    Label(master, text="Title:").grid(row=2, column=2, sticky=E)
+    title = Entry(master, width=25, font=small_font)
+    title.grid(row=2, column=3, sticky=W)
     
     Label(master, text="Company Name:").grid(row=3, column=0, sticky=E)
     company_name = Entry(master, width=30, font=small_font)
     company_name.grid(row=3, column=1, sticky=W)
-
    
     Label(master, text="Department:").grid(row=3, column=2, sticky=E)
     department = Entry(master, width=25, font=small_font)
@@ -89,7 +86,7 @@ def add_new_customer():
 
     
     Label(master, text="Address2:").grid(row=4, column=2, sticky=E)
-    address2 = Entry(master, width=30, font=small_font)
+    address2 = Entry(master, width=15, font=small_font)
     address2.grid(row=4, column=3, sticky=W)
     
     Label(master, text="Suite No:").grid(row=4, column=4, sticky=E)
@@ -137,25 +134,30 @@ def add_new_customer():
     office_email = Entry(master, width=30, font=small_font)
     office_email.grid(row=7, column=1, sticky=W)
 
-    
+
     Label(master, text="Home Email:").grid(row=7, column=2, sticky=E)
     home_email = Entry(master, width=30, font=small_font)
     home_email.grid(row=7, column=3, sticky=W)
+  
+
+    Label(master, text="Company Website:").grid(row=8, column=0, sticky=E)
+    company_website = Entry(master, width=20, font=small_font)
+    company_website.grid(row=8, column=1, sticky=W)   
 
     
-    Label(master, text="Gender:").grid(row=8, column=0, sticky=E)
+    Label(master, text="Gender:").grid(row=9, column=0, sticky=E)
     gender = Entry(master, width=7, font=small_font)
-    gender.grid(row=8, column=1, sticky=W)
+    gender.grid(row=9, column=1, sticky=W)
 
     
-    Label(master, text="Age:").grid(row=8, column=2, sticky=E)
+    Label(master, text="Age:").grid(row=9, column=2, sticky=E)
     age = Entry(master, width=5, font=small_font)
-    age.grid(row=8, column=3, sticky=W)
+    age.grid(row=9, column=3, sticky=W)
 
     
-    Label(master, text="Notes:").grid(row=9, column=0, sticky=E)
+    Label(master, text="Notes:").grid(row=10, column=0, sticky=E)
     notes = Entry(master, width=30, font=small_font)
-    notes.grid(row=9, column=1, sticky=W)
+    notes.grid(row=10, column=1, sticky=W)
     
 ##    PersonID.delete(0, END)
     salut.delete(0,END)
@@ -179,6 +181,7 @@ def add_new_customer():
     fax_phone.delete(0,END)
     office_email.delete(0,END)
     home_email.delete(0,END)
+    company_website.delete(0, END)
     gender.delete(0,END)
     age.delete(0,END)
     notes.delete(0,END)
@@ -205,14 +208,15 @@ def insert_data():
     home_phone1 = home_phone.get()
     fax_phone1 = fax_phone.get()
     office_email1 = office_email.get()    
-    home_email1 = home_email.get()    
+    home_email1 = home_email.get()
+    company_website1 = company_website.get()
     gender1 = gender.get()    
     age1 = age.get()    
     notes1 = notes.get()    
  
     print(salut1, firstname1, mid_init1, lastname1, suffix1, title1, company_name1, 
                  department1, address11, address21, suite_no1, city1, state1, postal_code1, zip_code1, mobile_phone1, office_phone1,
-                 home_phone1, fax_phone1, office_email1, home_email1, gender1, age1, notes1)
+                 home_phone1, fax_phone1, office_email1, home_email1, company_website1, gender1, age1, notes1)
 
 
 
@@ -222,13 +226,13 @@ def insert_data():
        sql =  """
               INSERT INTO clientinfo(salut, firstname, mid_init, lastname, suffix, title, company_name,  
                  department, address1, address2, suite_no, city, state, postal_code, zip_code, mobile_phone,  
-                 office_phone, home_phone, fax_phone, office_email, home_email, gender, age, notes)   
+                 office_phone, home_phone, fax_phone, office_email, home_email, company_website, gender, age, notes)   
                  VALUES
-                    (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)   
+                    (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)   
               """
        c.execute(sql, (salut1, firstname1, mid_init1, lastname1, suffix1, title1, company_name1, department1,
                        address11, address21, suite_no1, city1, state1, postal_code1, zip_code1, mobile_phone1,
-                       office_phone1, home_phone1, fax_phone1, office_email1, home_email1, gender1, age1, notes1))
+                       office_phone1, home_phone1, fax_phone1, office_email1, home_email1, company_website1, gender1, age1, notes1))
 
 
     conn.commit()   
@@ -258,7 +262,8 @@ def update_record():
     home_phone1 = home_phone.get()
     fax_phone1 = fax_phone.get()
     office_email1 = office_email.get()    
-    home_email1 = home_email.get()    
+    home_email1 = home_email.get()
+    company_website1 = company_website.get()
     gender1 = gender.get()    
     age1 = age.get()    
     notes1 = notes.get()    
@@ -268,9 +273,9 @@ def update_record():
        c = conn.cursor()
     c.execute('UPDATE clientinfo SET salut = %s,  firstname = %s,  mid_init = %s,  lastname = %s,  suffix = %s,  title = %s,  company_name = %s,  ' 
              'department = %s,  address1 = %s,  address2 = %s,  suite_no = %s,  city = %s,  state = %s,  postal_code = %s,  zip_code = %s,  mobile_phone = %s,  ' 
-             'office_phone = %s,  home_phone = %s,  fax_phone = %s, office_email = %s,  home_email = %s,  gender = %s,  age = %s,  notes  = %s WHERE PersonID = %s', (salut1, firstname1, mid_init1, lastname1, 
+             'office_phone = %s,  home_phone = %s,  fax_phone = %s, office_email = %s,  home_email = %s,  company_website = %s, gender = %s,  age = %s,  notes  = %s WHERE PersonID = %s', (salut1, firstname1, mid_init1, lastname1, 
               suffix1, title1, company_name1, department1, address11, address21, suite_no1, city1, state1, postal_code1, zip_code1, 
-              mobile_phone1, office_phone1, home_phone1, fax_phone1, office_email1, home_email1, gender1, age1, notes1, PersonID1)) 
+              mobile_phone1, office_phone1, home_phone1, fax_phone1, office_email1, home_email1, company_website1, gender1, age1, notes1, PersonID1)) 
 
     conn.commit()
     conn.close()
@@ -296,6 +301,7 @@ def update_record():
     fax_phone.delete(0,END)
     office_email.delete(0,END)
     home_email.delete(0,END)
+    company_website.delete(0, END)
     gender.delete(0,END)
     age.delete(0,END)
     notes.delete(0,END)
@@ -324,6 +330,7 @@ def get_customer_record():
     global fax_phone
     global office_email
     global home_email
+    global company_website
     global gender
     global age
     global notes
@@ -361,9 +368,10 @@ def get_customer_record():
         fax_phone=row[19]
         office_email=row[20]
         home_email=row[21]
-        gender=row[22]
-        age=row[23]
-        notes=row[24]
+        company_website=row[22]
+        gender=row[23]
+        age=row[24]
+        notes=row[25]
 
     Label(master, text="Person ID:").grid(row=0, column=0, sticky=E)
     PersonID = Entry(master, width=5, font=small_font)
@@ -384,22 +392,18 @@ def get_customer_record():
     Label(master, text="Last Name:").grid(row=1, column=6, sticky=E)
     lastname = Entry(master, width=15, font=small_font)
     lastname.grid(row=1, column=7, sticky=W)
-
   
-    Label(master, text="Suffix:").grid(row=1, column=8, sticky=E)
+    Label(master, text="Suffix:").grid(row=2, column=0, sticky=E)
     suffix = Entry(master, width=5, font=small_font)
-    suffix.grid(row=1, column=9, sticky=W)
-
+    suffix.grid(row=2, column=1, sticky=W)
     
-    Label(master, text="Title:").grid(row=2, column=0, sticky=E)
-    title = Entry(master, width=30, font=small_font)
-    title.grid(row=2, column=1, sticky=W)
-
+    Label(master, text="Title:").grid(row=2, column=2, sticky=E)
+    title = Entry(master, width=25, font=small_font)
+    title.grid(row=2, column=3, sticky=W)
     
     Label(master, text="Company Name:").grid(row=3, column=0, sticky=E)
     company_name = Entry(master, width=30, font=small_font)
     company_name.grid(row=3, column=1, sticky=W)
-
    
     Label(master, text="Department:").grid(row=3, column=2, sticky=E)
     department = Entry(master, width=25, font=small_font)
@@ -412,7 +416,7 @@ def get_customer_record():
 
     
     Label(master, text="Address2:").grid(row=4, column=2, sticky=E)
-    address2 = Entry(master, width=30, font=small_font)
+    address2 = Entry(master, width=15, font=small_font)
     address2.grid(row=4, column=3, sticky=W)
     
     Label(master, text="Suite No:").grid(row=4, column=4, sticky=E)
@@ -455,31 +459,35 @@ def get_customer_record():
     Label(master, text="Fax Phone:").grid(row=6, column=6, sticky=E)
     fax_phone = Entry(master, width=15, font=small_font)
     fax_phone.grid(row=6, column=7, sticky=W)
-
     
     Label(master, text="Office Email:").grid(row=7, column=0, sticky=E)
     office_email = Entry(master, width=30, font=small_font)
     office_email.grid(row=7, column=1, sticky=W)
 
-    
+
     Label(master, text="Home Email:").grid(row=7, column=2, sticky=E)
     home_email = Entry(master, width=30, font=small_font)
     home_email.grid(row=7, column=3, sticky=W)
+  
+
+    Label(master, text="Company Website:").grid(row=8, column=0, sticky=E)
+    company_website = Entry(master, width=20, font=small_font)
+    company_website.grid(row=8, column=1, sticky=W)   
 
     
-    Label(master, text="Gender:").grid(row=8, column=0, sticky=E)
+    Label(master, text="Gender:").grid(row=9, column=0, sticky=E)
     gender = Entry(master, width=7, font=small_font)
-    gender.grid(row=8, column=1, sticky=W)
+    gender.grid(row=9, column=1, sticky=W)
 
     
-    Label(master, text="Age:").grid(row=8, column=2, sticky=E)
+    Label(master, text="Age:").grid(row=9, column=2, sticky=E)
     age = Entry(master, width=5, font=small_font)
-    age.grid(row=8, column=3, sticky=W)
+    age.grid(row=9, column=3, sticky=W)
 
     
-    Label(master, text="Notes:").grid(row=9, column=0, sticky=E)
+    Label(master, text="Notes:").grid(row=10, column=0, sticky=E)
     notes = Entry(master, width=30, font=small_font)
-    notes.grid(row=9, column=1, sticky=W)
+    notes.grid(row=10, column=1, sticky=W)
 
     PersonID.insert(END, row[0])
     salut.insert(END, row[1])
@@ -503,36 +511,11 @@ def get_customer_record():
     fax_phone.insert(END, row[19])
     office_email.insert(END, row[20])
     home_email.insert(END, row[21])
-    gender.insert(END, row[22])
-    age.insert(END, row[23])
-    notes.insert(END, row[24])
+    company_website.insert(END, row[22])
+    gender.insert(END, row[23])
+    age.insert(END, row[24])
+    notes.insert(END, row[25])
 
-
-##def clear_fields():
-##   PersonID.delete(0, END)
-##   salut.delete(0,END)
-##   firstname.delete(0,END)
-##   mid_init.delete(0,END)
-##   lastname.delete(0,END)
-##   suffix.delete(0,END)
-##   title.delete(0,END)
-##   company_name.delete(0,END)
-##   department.delete(0,END)
-##   address1.delete(0,END)
-##   address2.delete(0,END)
-##   suite_no.delete(0,END)
-##   city.delete(0,END)
-##   state.delete(0,END)
-##   postal_code.delete(0,END)
-##   zip_code.delete(0,END)
-##   mobile_phone.delete(0,END)
-##   office_phone.delete(0,END)
-##   home_phone.delete(0,END)
-##   office_email.delete(0,END)
-##   home_email.delete(0,END)
-##   gender.delete(0,END)
-##   age.delete(0,END)
-##   notes.delete(0,END)
 
 def get_next_record():
     global PersonID
@@ -557,6 +540,7 @@ def get_next_record():
     global fax_phone
     global office_email
     global home_email
+    global company_website
     global gender
     global age
     global notes
@@ -587,6 +571,7 @@ def get_next_record():
     fax_phone.delete(0,END)
     office_email.delete(0,END)
     home_email.delete(0,END)
+    company_website.delete(0, END)
     gender.delete(0,END)
     age.delete(0,END)
     notes.delete(0,END)
@@ -624,9 +609,10 @@ def get_next_record():
         fax_phone=row[19]
         office_email=row[20]
         home_email=row[21]
-        gender=row[22]
-        age=row[23]
-        notes=row[24]
+        company_website=row[22]
+        gender=row[23]
+        age=row[24]
+        notes=row[25]
     conn.commit()
     conn.close()
 
@@ -649,22 +635,18 @@ def get_next_record():
     Label(master, text="Last Name:").grid(row=1, column=6, sticky=E)
     lastname = Entry(master, width=15, font=small_font)
     lastname.grid(row=1, column=7, sticky=W)
-
   
-    Label(master, text="Suffix:").grid(row=1, column=8, sticky=E)
+    Label(master, text="Suffix:").grid(row=2, column=0, sticky=E)
     suffix = Entry(master, width=5, font=small_font)
-    suffix.grid(row=1, column=9, sticky=W)
-
+    suffix.grid(row=2, column=1, sticky=W)
     
-    Label(master, text="Title:").grid(row=2, column=0, sticky=E)
-    title = Entry(master, width=30, font=small_font)
-    title.grid(row=2, column=1, sticky=W)
-
+    Label(master, text="Title:").grid(row=2, column=2, sticky=E)
+    title = Entry(master, width=25, font=small_font)
+    title.grid(row=2, column=3, sticky=W)
     
     Label(master, text="Company Name:").grid(row=3, column=0, sticky=E)
     company_name = Entry(master, width=30, font=small_font)
     company_name.grid(row=3, column=1, sticky=W)
-
    
     Label(master, text="Department:").grid(row=3, column=2, sticky=E)
     department = Entry(master, width=25, font=small_font)
@@ -677,7 +659,7 @@ def get_next_record():
 
     
     Label(master, text="Address2:").grid(row=4, column=2, sticky=E)
-    address2 = Entry(master, width=30, font=small_font)
+    address2 = Entry(master, width=15, font=small_font)
     address2.grid(row=4, column=3, sticky=W)
     
     Label(master, text="Suite No:").grid(row=4, column=4, sticky=E)
@@ -713,39 +695,42 @@ def get_next_record():
     office_phone = Entry(master, width=15, font=small_font)
     office_phone.grid(row=6, column=3, sticky=W)
     
-
     Label(master, text="Home Phone:").grid(row=6, column=4, sticky=E)
     home_phone = Entry(master, width=15, font=small_font)
     home_phone.grid(row=6, column=5, sticky=W)
 
-    
     Label(master, text="Fax Phone:").grid(row=6, column=6, sticky=E)
     fax_phone = Entry(master, width=15, font=small_font)
-    fax_phone.grid(row=6, column=7, sticky=W) 
+    fax_phone.grid(row=6, column=7, sticky=W)
     
     Label(master, text="Office Email:").grid(row=7, column=0, sticky=E)
     office_email = Entry(master, width=30, font=small_font)
     office_email.grid(row=7, column=1, sticky=W)
 
-    
+
     Label(master, text="Home Email:").grid(row=7, column=2, sticky=E)
     home_email = Entry(master, width=30, font=small_font)
     home_email.grid(row=7, column=3, sticky=W)
+  
+
+    Label(master, text="Company Website:").grid(row=8, column=0, sticky=E)
+    company_website = Entry(master, width=20, font=small_font)
+    company_website.grid(row=8, column=1, sticky=W)   
 
     
-    Label(master, text="Gender:").grid(row=8, column=0, sticky=E)
+    Label(master, text="Gender:").grid(row=9, column=0, sticky=E)
     gender = Entry(master, width=7, font=small_font)
-    gender.grid(row=8, column=1, sticky=W)
+    gender.grid(row=9, column=1, sticky=W)
 
     
-    Label(master, text="Age:").grid(row=8, column=2, sticky=E)
+    Label(master, text="Age:").grid(row=9, column=2, sticky=E)
     age = Entry(master, width=5, font=small_font)
-    age.grid(row=8, column=3, sticky=W)
+    age.grid(row=9, column=3, sticky=W)
 
     
-    Label(master, text="Notes:").grid(row=9, column=0, sticky=E)
+    Label(master, text="Notes:").grid(row=10, column=0, sticky=E)
     notes = Entry(master, width=30, font=small_font)
-    notes.grid(row=9, column=1, sticky=W)
+    notes.grid(row=10, column=1, sticky=W)
 
     
     PersonID.insert(END, row[0])
@@ -770,9 +755,10 @@ def get_next_record():
     fax_phone.insert(END, row[19])
     office_email.insert(END, row[20])
     home_email.insert(END, row[21])
-    gender.insert(END, row[22])
-    age.insert(END, row[23])
-    notes.insert(END, row[24])
+    company_website.insert(END, row[22])
+    gender.insert(END, row[23])
+    age.insert(END, row[24])
+    notes.insert(END, row[25])
 
 
 def get_previous_record():
@@ -798,6 +784,7 @@ def get_previous_record():
     global fax_phone
     global office_email
     global home_email
+    global company_website
     global gender
     global age
     global notes
@@ -830,6 +817,7 @@ def get_previous_record():
         fax_phone.delete(0,END)
         office_email.delete(0,END)
         home_email.delete(0,END)
+        company_website.delete(0, END)
         gender.delete(0,END)
         age.delete(0,END)
         notes.delete(0,END)
@@ -863,9 +851,10 @@ def get_previous_record():
             fax_phone=row[19]
             office_email=row[20]
             home_email=row[21]
-            gender=row[22]
-            age=row[23]
-            notes=row[24]
+            company_website=row[22]
+            gender=row[23]
+            age=row[24]
+            notes=row[25]
         conn.commit()
         conn.close()
         
@@ -873,144 +862,144 @@ def get_previous_record():
         PersonID = Entry(master, width=5, font=small_font)
         PersonID.grid(row=0, column=1, sticky=W)
         
-        Label(master, text="Salutation:").grid(row=1, column=0, sticky=E)
-        salut = Entry(master, width=5, font=small_font)
-        salut.grid(row=1, column=1, sticky=W)
-        
-        Label(master, text="First Name:").grid(row=1, column=2, sticky=E)
-        firstname = Entry(master, width=25, font=small_font)
-        firstname.grid(row=1, column=3, sticky=W)
+    Label(master, text="Salutation:").grid(row=1, column=0, sticky=E)
+    salut = Entry(master, width=5, font=small_font)
+    salut.grid(row=1, column=1, sticky=W)
+    
+    Label(master, text="First Name:").grid(row=1, column=2, sticky=E)
+    firstname = Entry(master, width=25, font=small_font)
+    firstname.grid(row=1, column=3, sticky=W)
 
-        Label(master, text="Mid Init:").grid(row=1, column=4, sticky=E)
-        mid_init = Entry(master, width=5, font=small_font)
-        mid_init.grid(row=1, column=5, sticky=W)
+    Label(master, text="Mid Init:").grid(row=1, column=4, sticky=E)
+    mid_init = Entry(master, width=5, font=small_font)
+    mid_init.grid(row=1, column=5, sticky=W)
 
-        Label(master, text="Last Name:").grid(row=1, column=6, sticky=E)
-        lastname = Entry(master, width=15, font=small_font)
-        lastname.grid(row=1, column=7, sticky=W)
+    Label(master, text="Last Name:").grid(row=1, column=6, sticky=E)
+    lastname = Entry(master, width=15, font=small_font)
+    lastname.grid(row=1, column=7, sticky=W)
+  
+    Label(master, text="Suffix:").grid(row=2, column=0, sticky=E)
+    suffix = Entry(master, width=5, font=small_font)
+    suffix.grid(row=2, column=1, sticky=W)
+    
+    Label(master, text="Title:").grid(row=2, column=2, sticky=E)
+    title = Entry(master, width=25, font=small_font)
+    title.grid(row=2, column=3, sticky=W)
+    
+    Label(master, text="Company Name:").grid(row=3, column=0, sticky=E)
+    company_name = Entry(master, width=30, font=small_font)
+    company_name.grid(row=3, column=1, sticky=W)
+   
+    Label(master, text="Department:").grid(row=3, column=2, sticky=E)
+    department = Entry(master, width=25, font=small_font)
+    department.grid(row=3, column=3, sticky=W)
 
-      
-        Label(master, text="Suffix:").grid(row=1, column=8, sticky=E)
-        suffix = Entry(master, width=5, font=small_font)
-        suffix.grid(row=1, column=9, sticky=W)
+    
+    Label(master, text="Address1:").grid(row=4, column=0, sticky=E)
+    address1 = Entry(master, width=30, font=small_font)
+    address1.grid(row=4, column=1, sticky=W)
 
-        
-        Label(master, text="Title:").grid(row=2, column=0, sticky=E)
-        title = Entry(master, width=30, font=small_font)
-        title.grid(row=2, column=1, sticky=W)
+    
+    Label(master, text="Address2:").grid(row=4, column=2, sticky=E)
+    address2 = Entry(master, width=15, font=small_font)
+    address2.grid(row=4, column=3, sticky=W)
+    
+    Label(master, text="Suite No:").grid(row=4, column=4, sticky=E)
+    suite_no = Entry(master, width=15, font=small_font)
+    suite_no.grid(row=4, column=5, sticky=W)
 
-        
-        Label(master, text="Company Name:").grid(row=3, column=0, sticky=E)
-        company_name = Entry(master, width=30, font=small_font)
-        company_name.grid(row=3, column=1, sticky=W)
+    
+    Label(master, text="City:").grid(row=5, column=0, sticky=E)
+    city = Entry(master, width=25, font=small_font)
+    city.grid(row=5, column=1, sticky=W)
 
-       
-        Label(master, text="Department:").grid(row=3, column=2, sticky=E)
-        department = Entry(master, width=25, font=small_font)
-        department.grid(row=3, column=3, sticky=W)
+    
+    Label(master, text="State:").grid(row=5, column=2, sticky=E)
+    state = Entry(master, width=5, font=small_font)
+    state.grid(row=5, column=3, sticky=W)
 
-        
-        Label(master, text="Address1:").grid(row=4, column=0, sticky=E)
-        address1 = Entry(master, width=30, font=small_font)
-        address1.grid(row=4, column=1, sticky=W)
+    
+    Label(master, text="Postal Code:").grid(row=5, column=4, sticky=E)
+    postal_code = Entry(master, width=15, font=small_font)
+    postal_code.grid(row=5, column=5, sticky=W)
 
-        
-        Label(master, text="Address2:").grid(row=4, column=2, sticky=E)
-        address2 = Entry(master, width=30, font=small_font)
-        address2.grid(row=4, column=3, sticky=W)
-        
-        Label(master, text="Suite No:").grid(row=4, column=4, sticky=E)
-        suite_no = Entry(master, width=15, font=small_font)
-        suite_no.grid(row=4, column=5, sticky=W)
+    
+    Label(master, text="Zip Code:").grid(row=5, column=6, sticky=E)
+    zip_code = Entry(master, width=15, font=small_font)
+    zip_code.grid(row=5, column=7, sticky=W)
 
-        
-        Label(master, text="City:").grid(row=5, column=0, sticky=E)
-        city = Entry(master, width=25, font=small_font)
-        city.grid(row=5, column=1, sticky=W)
+   
+    Label(master, text="Mobile Phone:").grid(row=6, column=0, sticky=E)
+    mobile_phone = Entry(master, width=15, font=small_font)
+    mobile_phone.grid(row=6, column=1, sticky=W)
+    
+    Label(master, text="Office Phone:").grid(row=6, column=2, sticky=E)
+    office_phone = Entry(master, width=15, font=small_font)
+    office_phone.grid(row=6, column=3, sticky=W)
+    
+    Label(master, text="Home Phone:").grid(row=6, column=4, sticky=E)
+    home_phone = Entry(master, width=15, font=small_font)
+    home_phone.grid(row=6, column=5, sticky=W)
 
-        
-        Label(master, text="State:").grid(row=5, column=2, sticky=E)
-        state = Entry(master, width=5, font=small_font)
-        state.grid(row=5, column=3, sticky=W)
-
-        
-        Label(master, text="Postal Code:").grid(row=5, column=4, sticky=E)
-        postal_code = Entry(master, width=15, font=small_font)
-        postal_code.grid(row=5, column=5, sticky=W)
-
-        
-        Label(master, text="Zip Code:").grid(row=5, column=6, sticky=E)
-        zip_code = Entry(master, width=15, font=small_font)
-        zip_code.grid(row=5, column=7, sticky=W)
-
-       
-        Label(master, text="Mobile Phone:").grid(row=6, column=0, sticky=E)
-        mobile_phone = Entry(master, width=15, font=small_font)
-        mobile_phone.grid(row=6, column=1, sticky=W)
-        
-        Label(master, text="Office Phone:").grid(row=6, column=2, sticky=E)
-        office_phone = Entry(master, width=15, font=small_font)
-        office_phone.grid(row=6, column=3, sticky=W)
-        
-        Label(master, text="Home Phone:").grid(row=6, column=4, sticky=E)
-        home_phone = Entry(master, width=15, font=small_font)
-        home_phone.grid(row=6, column=5, sticky=W)
+    Label(master, text="Fax Phone:").grid(row=6, column=6, sticky=E)
+    fax_phone = Entry(master, width=15, font=small_font)
+    fax_phone.grid(row=6, column=7, sticky=W)
+    
+    Label(master, text="Office Email:").grid(row=7, column=0, sticky=E)
+    office_email = Entry(master, width=30, font=small_font)
+    office_email.grid(row=7, column=1, sticky=W)
 
 
-        Label(master, text="Fax Phone:").grid(row=6, column=6, sticky=E)
-        fax_phone = Entry(master, width=15, font=small_font)
-        fax_phone.grid(row=6, column=7, sticky=W)
-        
-        
-        Label(master, text="Office Email:").grid(row=7, column=0, sticky=E)
-        office_email = Entry(master, width=30, font=small_font)
-        office_email.grid(row=7, column=1, sticky=W)
+    Label(master, text="Home Email:").grid(row=7, column=2, sticky=E)
+    home_email = Entry(master, width=30, font=small_font)
+    home_email.grid(row=7, column=3, sticky=W)
+  
 
-        
-        Label(master, text="Home Email:").grid(row=7, column=2, sticky=E)
-        home_email = Entry(master, width=30, font=small_font)
-        home_email.grid(row=7, column=3, sticky=W)
+    Label(master, text="Company Website:").grid(row=8, column=0, sticky=E)
+    company_website = Entry(master, width=20, font=small_font)
+    company_website.grid(row=8, column=1, sticky=W)   
 
-        
-        Label(master, text="Gender:").grid(row=8, column=0, sticky=E)
-        gender = Entry(master, width=7, font=small_font)
-        gender.grid(row=8, column=1, sticky=W)
+    
+    Label(master, text="Gender:").grid(row=9, column=0, sticky=E)
+    gender = Entry(master, width=7, font=small_font)
+    gender.grid(row=9, column=1, sticky=W)
 
-        
-        Label(master, text="Age:").grid(row=8, column=2, sticky=E)
-        age = Entry(master, width=5, font=small_font)
-        age.grid(row=8, column=3, sticky=W)
+    
+    Label(master, text="Age:").grid(row=9, column=2, sticky=E)
+    age = Entry(master, width=5, font=small_font)
+    age.grid(row=9, column=3, sticky=W)
 
-        
-        Label(master, text="Notes:").grid(row=9, column=0, sticky=E)
-        notes = Entry(master, width=30, font=small_font)
-        notes.grid(row=9, column=1, sticky=W)
+    
+    Label(master, text="Notes:").grid(row=10, column=0, sticky=E)
+    notes = Entry(master, width=30, font=small_font)
+    notes.grid(row=10, column=1, sticky=W)
 
-        PersonID.insert(END, row[0])
-        salut.insert(END, row[1])
-        firstname.insert(END, row[2])
-        mid_init.insert(END, row[3])
-        lastname.insert(END, row[4])
-        suffix.insert(END, row[5])
-        title.insert(END, row[6])
-        company_name.insert(END, row[7])
-        department.insert(END, row[8])
-        address1.insert(END, row[9])
-        address2.insert(END, row[10])
-        suite_no.insert(END, row[11])
-        city.insert(END, row[12])
-        state.insert(END, row[13])
-        postal_code.insert(END, row[14])
-        zip_code.insert(END, row[15])
-        mobile_phone.insert(END, row[16])
-        office_phone.insert(END, row[17])
-        home_phone.insert(END, row[18])
-        fax_phone.insert(END, row[19])
-        office_email.insert(END, row[20])
-        home_email.insert(END, row[21])
-        gender.insert(END, row[22])
-        age.insert(END, row[23])
-        notes.insert(END, row[24])
+    PersonID.insert(END, row[0])
+    salut.insert(END, row[1])
+    firstname.insert(END, row[2])
+    mid_init.insert(END, row[3])
+    lastname.insert(END, row[4])
+    suffix.insert(END, row[5])
+    title.insert(END, row[6])
+    company_name.insert(END, row[7])
+    department.insert(END, row[8])
+    address1.insert(END, row[9])
+    address2.insert(END, row[10])
+    suite_no.insert(END, row[11])
+    city.insert(END, row[12])
+    state.insert(END, row[13])
+    postal_code.insert(END, row[14])
+    zip_code.insert(END, row[15])
+    mobile_phone.insert(END, row[16])
+    office_phone.insert(END, row[17])
+    home_phone.insert(END, row[18])
+    fax_phone.insert(END, row[19])
+    office_email.insert(END, row[20])
+    home_email.insert(END, row[21])
+    company_website.insert(END, row[22])
+    gender.insert(END, row[23])
+    age.insert(END, row[24])
+    notes.insert(END, row[25])
 
     
 def get_first_record():
@@ -1036,6 +1025,7 @@ def get_first_record():
     global fax_phone
     global office_email
     global home_email
+    global company_website
     global gender
     global age
     global notes
@@ -1099,15 +1089,16 @@ def get_first_record():
         fax_phone=row[19]
         office_email=row[20]
         home_email=row[21]
-        gender=row[22]
-        age=row[23]
-        notes=row[24]
+        company_website=row[22]
+        gender=row[23]
+        age=row[24]
+        notes=row[25]
     conn.commit()
     conn.close()
 
     Label(master, text="Person ID:").grid(row=0, column=0, sticky=E)
     PersonID = Entry(master, width=5, font=small_font)
-    PersonID.grid(row=0, column=1, sticky=W)  
+    PersonID.grid(row=0, column=1, sticky=W)   
 
     Label(master, text="Salutation:").grid(row=1, column=0, sticky=E)
     salut = Entry(master, width=5, font=small_font)
@@ -1124,22 +1115,18 @@ def get_first_record():
     Label(master, text="Last Name:").grid(row=1, column=6, sticky=E)
     lastname = Entry(master, width=15, font=small_font)
     lastname.grid(row=1, column=7, sticky=W)
-
   
-    Label(master, text="Suffix:").grid(row=1, column=8, sticky=E)
+    Label(master, text="Suffix:").grid(row=2, column=0, sticky=E)
     suffix = Entry(master, width=5, font=small_font)
-    suffix.grid(row=1, column=9, sticky=W)
-
+    suffix.grid(row=2, column=1, sticky=W)
     
-    Label(master, text="Title:").grid(row=2, column=0, sticky=E)
-    title = Entry(master, width=30, font=small_font)
-    title.grid(row=2, column=1, sticky=W)
-
+    Label(master, text="Title:").grid(row=2, column=2, sticky=E)
+    title = Entry(master, width=25, font=small_font)
+    title.grid(row=2, column=3, sticky=W)
     
     Label(master, text="Company Name:").grid(row=3, column=0, sticky=E)
     company_name = Entry(master, width=30, font=small_font)
     company_name.grid(row=3, column=1, sticky=W)
-
    
     Label(master, text="Department:").grid(row=3, column=2, sticky=E)
     department = Entry(master, width=25, font=small_font)
@@ -1152,7 +1139,7 @@ def get_first_record():
 
     
     Label(master, text="Address2:").grid(row=4, column=2, sticky=E)
-    address2 = Entry(master, width=30, font=small_font)
+    address2 = Entry(master, width=15, font=small_font)
     address2.grid(row=4, column=3, sticky=W)
     
     Label(master, text="Suite No:").grid(row=4, column=4, sticky=E)
@@ -1192,35 +1179,38 @@ def get_first_record():
     home_phone = Entry(master, width=15, font=small_font)
     home_phone.grid(row=6, column=5, sticky=W)
 
-
     Label(master, text="Fax Phone:").grid(row=6, column=6, sticky=E)
     fax_phone = Entry(master, width=15, font=small_font)
     fax_phone.grid(row=6, column=7, sticky=W)
-
     
     Label(master, text="Office Email:").grid(row=7, column=0, sticky=E)
     office_email = Entry(master, width=30, font=small_font)
     office_email.grid(row=7, column=1, sticky=W)
 
-    
+
     Label(master, text="Home Email:").grid(row=7, column=2, sticky=E)
     home_email = Entry(master, width=30, font=small_font)
     home_email.grid(row=7, column=3, sticky=W)
+  
+
+    Label(master, text="Company Website:").grid(row=8, column=0, sticky=E)
+    company_website = Entry(master, width=20, font=small_font)
+    company_website.grid(row=8, column=1, sticky=W)   
 
     
-    Label(master, text="Gender:").grid(row=8, column=0, sticky=E)
+    Label(master, text="Gender:").grid(row=9, column=0, sticky=E)
     gender = Entry(master, width=7, font=small_font)
-    gender.grid(row=8, column=1, sticky=W)
+    gender.grid(row=9, column=1, sticky=W)
 
     
-    Label(master, text="Age:").grid(row=8, column=2, sticky=E)
+    Label(master, text="Age:").grid(row=9, column=2, sticky=E)
     age = Entry(master, width=5, font=small_font)
-    age.grid(row=8, column=3, sticky=W)
+    age.grid(row=9, column=3, sticky=W)
 
     
-    Label(master, text="Notes:").grid(row=9, column=0, sticky=E)
+    Label(master, text="Notes:").grid(row=10, column=0, sticky=E)
     notes = Entry(master, width=30, font=small_font)
-    notes.grid(row=9, column=1, sticky=W)
+    notes.grid(row=10, column=1, sticky=W)
 
     PersonID.insert(END, row[0])
     salut.insert(END, row[1])
@@ -1244,9 +1234,10 @@ def get_first_record():
     fax_phone.insert(END, row[19])
     office_email.insert(END, row[20])
     home_email.insert(END, row[21])
-    gender.insert(END, row[22])
-    age.insert(END, row[23])
-    notes.insert(END, row[24])
+    company_website.insert(END, row[22])
+    gender.insert(END, row[23])
+    age.insert(END, row[24])
+    notes.insert(END, row[25])
 
     
 def get_last_record():
@@ -1272,6 +1263,7 @@ def get_last_record():
     global fax_phone
     global office_email
     global home_email
+    global company_website
     global gender
     global age
     global notes
@@ -1334,9 +1326,10 @@ def get_last_record():
         fax_phone=row[19]
         office_email=row[20]
         home_email=row[21]
-        gender=row[22]
-        age=row[23]
-        notes=row[24]
+        company_website=row[22]
+        gender=row[23]
+        age=row[24]
+        notes=row[25]
     conn.commit()
     conn.close()
     
@@ -1359,22 +1352,18 @@ def get_last_record():
     Label(master, text="Last Name:").grid(row=1, column=6, sticky=E)
     lastname = Entry(master, width=15, font=small_font)
     lastname.grid(row=1, column=7, sticky=W)
-
   
-    Label(master, text="Suffix:").grid(row=1, column=8, sticky=E)
+    Label(master, text="Suffix:").grid(row=2, column=0, sticky=E)
     suffix = Entry(master, width=5, font=small_font)
-    suffix.grid(row=1, column=9, sticky=W)
-
+    suffix.grid(row=2, column=1, sticky=W)
     
-    Label(master, text="Title:").grid(row=2, column=0, sticky=E)
-    title = Entry(master, width=30, font=small_font)
-    title.grid(row=2, column=1, sticky=W)
-
+    Label(master, text="Title:").grid(row=2, column=2, sticky=E)
+    title = Entry(master, width=25, font=small_font)
+    title.grid(row=2, column=3, sticky=W)
     
     Label(master, text="Company Name:").grid(row=3, column=0, sticky=E)
     company_name = Entry(master, width=30, font=small_font)
     company_name.grid(row=3, column=1, sticky=W)
-
    
     Label(master, text="Department:").grid(row=3, column=2, sticky=E)
     department = Entry(master, width=25, font=small_font)
@@ -1387,7 +1376,7 @@ def get_last_record():
 
     
     Label(master, text="Address2:").grid(row=4, column=2, sticky=E)
-    address2 = Entry(master, width=30, font=small_font)
+    address2 = Entry(master, width=15, font=small_font)
     address2.grid(row=4, column=3, sticky=W)
     
     Label(master, text="Suite No:").grid(row=4, column=4, sticky=E)
@@ -1427,7 +1416,6 @@ def get_last_record():
     home_phone = Entry(master, width=15, font=small_font)
     home_phone.grid(row=6, column=5, sticky=W)
 
-    
     Label(master, text="Fax Phone:").grid(row=6, column=6, sticky=E)
     fax_phone = Entry(master, width=15, font=small_font)
     fax_phone.grid(row=6, column=7, sticky=W)
@@ -1436,25 +1424,30 @@ def get_last_record():
     office_email = Entry(master, width=30, font=small_font)
     office_email.grid(row=7, column=1, sticky=W)
 
-    
+
     Label(master, text="Home Email:").grid(row=7, column=2, sticky=E)
     home_email = Entry(master, width=30, font=small_font)
     home_email.grid(row=7, column=3, sticky=W)
+  
+
+    Label(master, text="Company Website:").grid(row=8, column=0, sticky=E)
+    company_website = Entry(master, width=20, font=small_font)
+    company_website.grid(row=8, column=1, sticky=W)   
 
     
-    Label(master, text="Gender:").grid(row=8, column=0, sticky=E)
+    Label(master, text="Gender:").grid(row=9, column=0, sticky=E)
     gender = Entry(master, width=7, font=small_font)
-    gender.grid(row=8, column=1, sticky=W)
+    gender.grid(row=9, column=1, sticky=W)
 
     
-    Label(master, text="Age:").grid(row=8, column=2, sticky=E)
+    Label(master, text="Age:").grid(row=9, column=2, sticky=E)
     age = Entry(master, width=5, font=small_font)
-    age.grid(row=8, column=3, sticky=W)
+    age.grid(row=9, column=3, sticky=W)
 
     
-    Label(master, text="Notes:").grid(row=9, column=0, sticky=E)
+    Label(master, text="Notes:").grid(row=10, column=0, sticky=E)
     notes = Entry(master, width=30, font=small_font)
-    notes.grid(row=9, column=1, sticky=W)
+    notes.grid(row=10, column=1, sticky=W)
 
 
 
@@ -1480,9 +1473,10 @@ def get_last_record():
     fax_phone.insert(END, row[19])
     office_email.insert(END, row[20])
     home_email.insert(END, row[21])
-    gender.insert(END, row[22])
-    age.insert(END, row[23])
-    notes.insert(END, row[24])
+    company_website.insert(END, row[22])
+    gender.insert(END, row[23])
+    age.insert(END, row[24])
+    notes.insert(END, row[25])
 
 def delete_record():
     global PersonID
@@ -1507,6 +1501,7 @@ def delete_record():
     global fax_phone
     global office_email
     global home_email
+    global company_website
     global gender
     global age
     global notes
@@ -1542,6 +1537,7 @@ def delete_record():
     fax_phone.delete(0,END)
     office_email.delete(0,END)
     home_email.delete(0,END)
+    company_website.delete(0, END)
     gender.delete(0,END)
     age.delete(0,END)
     notes.delete(0,END)
@@ -1575,20 +1571,20 @@ def delete_record():
 if __name__ == "__main__":
                
     master.configure(background='#ff8c8c')
+    getfirstrecbutton = Button(master, text='       First Record         ',fg="black", font=small_font,command=get_first_record).grid(row=25, column=0, sticky=W, padx=4, pady=4)
+    getprevrecordbutton = Button(master, text='   Previous Record   ', fg="dark green",font=small_font, command=get_previous_record).grid(row=25, column=1, sticky=W, padx=4, pady=4)
+    getnextrecbutton = Button(master, text='  Next Record     ', fg="blue",font=small_font, command=get_next_record).grid(row=25, column=2, sticky=W, padx=4, pady=4)
+    getlastbuttonbutton = Button(master, text='   Last Record  ', fg="brown",font=small_font, command=get_last_record).grid(row=25, column=3, sticky=W, padx=4, pady=4)
     
-    addcustbutton = Button(master, text=' Add New Customer   ',fg="green", font=small_font, command=add_new_customer).grid(row=25, column=1, sticky=W, padx=4, pady=4)
-    insertbutton = Button(master, text='  Insert Customer  ',fg="red",font=small_font, command=insert_data).grid(row=25, column=2, sticky=W, padx=4, pady=4)
-    getrecordbutton = Button(master, text='  Get Records    ', fg="purple",font=small_font, command=get_customer_record).grid(row=25, column=3, sticky=W, padx=4, pady=4)
-    updatebutton = Button(master, text='Update Record', fg="Blue",font=small_font, command=update_record).grid(row=25,  column=4, sticky=W, padx=4, pady=4)
+    addcustbutton = Button(master, text='   Add New Customer    ',fg="green", font=small_font, command=add_new_customer).grid(row=26, column=0, sticky=W, padx=4, pady=4)
+    insertbutton = Button(master, text='   Insert Customer   ',fg="red",font=small_font, command=insert_data).grid(row=26, column=1, sticky=W, padx=4, pady=4)
+    getrecordbutton = Button(master, text='  Get Records     ', fg="purple",font=small_font, command=get_customer_record).grid(row=26, column=2, sticky=W, padx=4, pady=4)
+    updatebutton = Button(master, text='Update Record ', fg="Blue",font=small_font, command=update_record).grid(row=26,  column=3, sticky=W, padx=4, pady=4)
 
-    getfirstrecbutton = Button(master, text='       First Record         ',fg="black", font=small_font,command=get_first_record).grid(row=26, column=1, sticky=W, padx=4, pady=4)
-    getprevrecordbutton = Button(master, text=' Previous Record ', fg="dark green",font=small_font, command=get_previous_record).grid(row=26, column=2, sticky=W, padx=4, pady=4)
-    getnextrecbutton = Button(master, text='  Next Record     ', fg="blue",font=small_font, command=get_next_record).grid(row=26, column=3, sticky=W, padx=4, pady=4)
-    getlastbuttonbutton = Button(master, text='   Last Record  ', fg="brown",font=small_font, command=get_last_record).grid(row=26, column=4, sticky=W, padx=4, pady=4)
 
-    deletebutton = Button(master, text=  ' Delete Record', fg="red",font=small_font, command=delete_record).grid(row=27, column=4, sticky=W, padx=4, pady=4)
+    deletebutton = Button(master, text=  '    Delete Record     ', fg="red",font=small_font, command=delete_record).grid(row=28, column=1, sticky=W, padx=4, pady=4)
 
-    quitbutton = Button(master, text='           Quit            ', fg="red",font=small_font, command=master.destroy).grid(row=30, column=2, sticky=W, padx=4, pady=4)
+    quitbutton = Button(master, text='        Quit          ', fg="red",font=small_font, command=master.destroy).grid(row=28, column=2, sticky=E, padx=4, pady=4)
 
 
 master.mainloop()
