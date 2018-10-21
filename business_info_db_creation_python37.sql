@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `clientinfo` (
   `fax_phone` varchar(15) DEFAULT NULL,
   `office_email` varchar(40) DEFAULT NULL,
   `home_email` varchar(40) DEFAULT NULL,
-  'company_website' varchar(60) DEFAULT NULL,
+  `company_website` varchar(60) DEFAULT NULL,
   `gender` varchar(10) DEFAULT NULL,
   `age` varchar(5) DEFAULT NULL,
   `notes` varchar(100) DEFAULT NULL,
