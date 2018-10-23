@@ -4,7 +4,8 @@ from tkinter import *
 import tkinter as ttk
 import os
 from BusinessCustomer import Clientinfo
-import pymysql
+## import pymysql
+import MySQLdb
 
 master = tk.Tk()
 master.geometry("10000x800+0+0")
@@ -214,23 +215,23 @@ def insert_data():
     age1 = age.get()    
     notes1 = notes.get()    
  
-    print(salut1, firstname1, mid_init1, lastname1, suffix1, title1, company_name1, 
-                 department1, address11, address21, suite_no1, city1, state1, postal_code1, zip_code1, mobile_phone1, office_phone1,
-                 home_phone1, fax_phone1, office_email1, home_email1, company_website1, gender1, age1, notes1)
+##    print(salut1, firstname1, mid_init1, lastname1, suffix1, title1, company_name1, 
+##                 department1, address11, address21, suite_no1, city1, state1, postal_code1, zip_code1, mobile_phone1, office_phone1,
+##                 home_phone1, fax_phone1, office_email1, home_email1, company_website1, gender1, age1, notes1)
 
 
 
-    conn = pymysql.connect(host='localhost', port=3306, user='staffmember', passwd='Customer1', db='business_info')
-    with conn:
-       c = conn.cursor()
-       sql =  """
-              INSERT INTO clientinfo(salut, firstname, mid_init, lastname, suffix, title, company_name,  
-                 department, address1, address2, suite_no, city, state, postal_code, zip_code, mobile_phone,  
-                 office_phone, home_phone, fax_phone, office_email, home_email, company_website, gender, age, notes)   
-                 VALUES
-                    (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)   
-              """
-       c.execute(sql, (salut1, firstname1, mid_init1, lastname1, suffix1, title1, company_name1, department1,
+    conn = MySQLdb.Connection(host='localhost', port=3306, user='staffmember', passwd='Customer1', db='business_info')
+    ## with conn:
+    c = conn.cursor()
+    sql =  """
+            INSERT INTO clientinfo(salut, firstname, mid_init, lastname, suffix, title, company_name,  
+                department, address1, address2, suite_no, city, state, postal_code, zip_code, mobile_phone,  
+                office_phone, home_phone, fax_phone, office_email, home_email, company_website, gender, age, notes)   
+                VALUES
+                (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)   
+            """
+    c.execute(sql, (salut1, firstname1, mid_init1, lastname1, suffix1, title1, company_name1, department1,
                        address11, address21, suite_no1, city1, state1, postal_code1, zip_code1, mobile_phone1,
                        office_phone1, home_phone1, fax_phone1, office_email1, home_email1, company_website1, gender1, age1, notes1))
 
@@ -268,9 +269,9 @@ def update_record():
     age1 = age.get()    
     notes1 = notes.get()    
  
-    conn = pymysql.connect(host='localhost', port=3306, user='staffmember', passwd='Customer1', db='business_info')
-    with conn:
-       c = conn.cursor()
+    conn = MySQLdb.Connection(host='localhost', port=3306, user='staffmember', passwd='Customer1', db='business_info')
+    ## with conn:
+    c = conn.cursor()
     c.execute('UPDATE clientinfo SET salut = %s,  firstname = %s,  mid_init = %s,  lastname = %s,  suffix = %s,  title = %s,  company_name = %s,  ' 
              'department = %s,  address1 = %s,  address2 = %s,  suite_no = %s,  city = %s,  state = %s,  postal_code = %s,  zip_code = %s,  mobile_phone = %s,  ' 
              'office_phone = %s,  home_phone = %s,  fax_phone = %s, office_email = %s,  home_email = %s,  company_website = %s, gender = %s,  age = %s,  notes  = %s WHERE PersonID = %s', (salut1, firstname1, mid_init1, lastname1, 
@@ -339,12 +340,12 @@ def get_customer_record():
     global lname
 
 
-    conn = pymysql.connect(host='localhost', port=3306, user='staffmember', passwd='Customer1', db='business_info')
-    with conn:
-        c = conn.cursor()
-        c.execute("SELECT * FROM clientinfo WHERE PersonID = 1;")        
-        list_load = c.fetchall()
-    conn.commit() 
+    conn = MySQLdb.Connection(host='localhost', port=3306, user='staffmember', passwd='Customer1', db='business_info')
+    ## with conn:
+    c = conn.cursor()
+    c.execute("SELECT * FROM clientinfo WHERE PersonID = 1;")        
+    list_load = c.fetchall()
+ 
     for row in list_load:
         PersonID=row[0]
         salut=row[1]
@@ -372,7 +373,9 @@ def get_customer_record():
         gender=row[23]
         age=row[24]
         notes=row[25]
+    conn.commit()
 
+    
     Label(master, text="Person ID:").grid(row=0, column=0, sticky=E)
     PersonID = Entry(master, width=5, font=small_font)
     PersonID.grid(row=0, column=1, sticky=W)    
@@ -576,15 +579,15 @@ def get_next_record():
     age.delete(0,END)
     notes.delete(0,END)
     
-    conn = pymysql.connect(host='localhost', port=3306, user='staffmember', passwd='Customer1', db='business_info')
-    with conn:
-        c = conn.cursor()
-        c.execute( "SELECT * FROM clientinfo WHERE PersonID LIKE %s", [next_PersonID] )
-        list_load = c.fetchall()
+    conn = MySQLdb.Connection(host='localhost', port=3306, user='staffmember', passwd='Customer1', db='business_info')
+    ## with conn:
+    c = conn.cursor()
+    c.execute( "SELECT * FROM clientinfo WHERE PersonID LIKE %s", [next_PersonID] )
+    list_load = c.fetchall()
 
 
     # prepare a cursor object using cursor() method
-    c = conn.cursor()
+    ## c = conn.cursor()
 
     for row in list_load:
         PersonID=row[0]
@@ -822,11 +825,11 @@ def get_previous_record():
         age.delete(0,END)
         notes.delete(0,END)
        
-        conn = pymysql.connect(host='localhost', port=3306, user='staffmember', passwd='Customer1', db='business_info')
-        with conn:
-            c = conn.cursor()
-            c.execute( "SELECT * FROM clientinfo WHERE PersonID LIKE %s", [prev_PersonID] )
-            list_load = c.fetchall()
+        conn = MySQLdb.Connection(host='localhost', port=3306, user='staffmember', passwd='Customer1', db='business_info')
+        ## with conn:
+        c = conn.cursor()
+        c.execute( "SELECT * FROM clientinfo WHERE PersonID LIKE %s", [prev_PersonID] )
+        list_load = c.fetchall()
         
         for row in list_load:
             PersonID=row[0]
@@ -1060,11 +1063,11 @@ def get_first_record():
 ##    notes.delete(0,END)
 
     
-    conn = pymysql.connect(host='localhost', port=3306, user='staffmember', passwd='Customer1', db='business_info')
-    with conn:
-        c = conn.cursor()
-        c.execute("SELECT * FROM clientinfo WHERE PersonID = (SELECT min(PersonID) from clientinfo)")
-        list_load = c.fetchall()
+    conn = MySQLdb.Connection(host='localhost', port=3306, user='staffmember', passwd='Customer1', db='business_info')
+    ## with conn:
+    c = conn.cursor()
+    c.execute("SELECT * FROM clientinfo WHERE PersonID = (SELECT min(PersonID) from clientinfo)")
+    list_load = c.fetchall()
         
     for row in list_load:
         PersonID=row[0]
@@ -1297,11 +1300,11 @@ def get_last_record():
 ##    age.delete(0,END)
 ##    notes.delete(0,END)
     
-    conn = pymysql.connect(host='localhost', port=3306, user='staffmember', passwd='Customer1', db='business_info')
-    with conn:
-        c = conn.cursor()
-        c.execute("SELECT * FROM clientinfo WHERE PersonID = (SELECT max(PersonID) from clientinfo)")
-        list_load = c.fetchall()
+    conn = MySQLdb.Connection(host='localhost', port=3306, user='staffmember', passwd='Customer1', db='business_info')
+    ## with conn:
+    c = conn.cursor()
+    c.execute("SELECT * FROM clientinfo WHERE PersonID = (SELECT max(PersonID) from clientinfo)")
+    list_load = c.fetchall()
         
     for row in list_load:
         PersonID=row[0]
@@ -1509,11 +1512,11 @@ def delete_record():
     PersonID1 = PersonID.get()
 
     
-    conn = pymysql.connect(host='localhost', port=3306, user='staffmember', passwd='Customer1', db='business_info')
-    with conn:
-        c = conn.cursor()
-        c.execute( "DELETE FROM clientinfo WHERE PersonID LIKE %s", [PersonID1] )
-        list_load = c.fetchall()
+    conn = MySQLdb.Connection(host='localhost', port=3306, user='staffmember', passwd='Customer1', db='business_info')
+    ##  with conn:
+    c = conn.cursor()
+    c.execute( "DELETE FROM clientinfo WHERE PersonID LIKE %s", [PersonID1] )
+    list_load = c.fetchall()
     
     PersonID.delete(0, END)
     salut.delete(0,END)
@@ -1543,24 +1546,24 @@ def delete_record():
     notes.delete(0,END)
     conn.close()
     
-    conn = pymysql.connect(host='localhost', port=3306, user='staffmember', passwd='Customer1', db='business_info')
-    with conn:
-        c = conn.cursor()
-        c.execute("ALTER TABLE clientinfo DROP COLUMN PersonID;")
+    conn = MySQLdb.Connection(host='localhost', port=3306, user='staffmember', passwd='Customer1', db='business_info')
+    ## with conn:
+    c = conn.cursor()
+    c.execute("ALTER TABLE clientinfo DROP COLUMN PersonID;")
     conn.commit()
     conn.close()
 
-    conn = pymysql.connect(host='localhost', port=3306, user='staffmember', passwd='Customer1', db='business_info')
-    with conn:
-        c = conn.cursor()    
-        c.execute("ALTER TABLE clientinfo ADD PersonID INT PRIMARY KEY AUTO_INCREMENT FIRST;")
+    conn = MySQLdb.Connection(host='localhost', port=3306, user='staffmember', passwd='Customer1', db='business_info')
+    ## with conn:
+    c = conn.cursor()    
+    c.execute("ALTER TABLE clientinfo ADD PersonID INT PRIMARY KEY AUTO_INCREMENT FIRST;")
     conn.commit()
     conn.close()
 
-    conn = pymysql.connect(host='localhost', port=3306, user='staffmember', passwd='Customer1', db='business_info')
-    with conn:
-        c = conn.cursor()
-        c.execute("SELECT * FROM clientinfo;")
+    conn = MySQLdb.Connection(host='localhost', port=3306, user='staffmember', passwd='Customer1', db='business_info')
+    ## with conn:
+    c = conn.cursor()
+    c.execute("SELECT * FROM clientinfo;")
     conn.commit()
     conn.close()
 
