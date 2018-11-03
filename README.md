@@ -9,6 +9,6 @@ NOTE:  Everything was tested using wampserver64, with localhost.
 
 HOW TO CREATE DATABASE:  the file business_info_db_creation.sql can be immediately imported in phpmyadmin as written.  To import only into a MySQL instance, copy and paste from the line "CREATE DATABASE IF NOT EXISTS...." all the way to the end.  The user name in all PHP and Python files is 'staffmember' and the password is 'Customer1'.  Please set up accordingly.
 
-NOTE:  For the Python - MySQL connection, I used pymysql.  If you have not installed it, please go to your commmand prompt, type "pip install pymysql".  
+NOTE:  For the Python-MySQL connection, I used MySQLdb.  If you have not installed it, please go to your commmand prompt, type "pip install MySQLdb".  
 
 Please feel free to render feedback/comments.  Thanks!
